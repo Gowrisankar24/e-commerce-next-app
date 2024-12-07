@@ -12,3 +12,7 @@ export function formatDate(date: string) {
         day: 'numeric',
     });
 }
+
+export function parsedResponseString<T>(response: T) {
+    return JSON.parse(JSON.stringify(response));
+}

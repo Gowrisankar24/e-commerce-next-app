@@ -1,7 +1,8 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 import { auth, signIn, signOut } from '../../auth';
+import { BadgePlus, LogOut } from 'lucide-react';
 
 const NavBar = async () => {
     const session = await auth();
@@ -16,7 +17,8 @@ const NavBar = async () => {
                     {session && session?.user ? (
                         <>
                             <Link href={'/startup/create'}>
-                                <span>Create</span>
+                                <span className="max-sm:hidden">Create</span>
+                                <BadgePlus className="size-6 sm:hidden" />
                             </Link>
                             <form
                                 action={async () => {
@@ -25,12 +27,20 @@ const NavBar = async () => {
                                 }}
                             >
                                 <button type="submit">
-                                    <span>Logout</span>
+                                    <span className="max-sm:hidden">Logout</span>
+                                    <LogOut className="size-6 sm:hidden text-red-500" />
                                 </button>
                             </form>
 
                             <Link href={`/users/${session?.user?.id}`}>
-                                <span>{session?.user?.name}</span>
+                                {/* <span className="max-sm:hidden">{session?.user?.name}</span> */}
+                                <Image
+                                    src={session?.user?.image || 'https://placehold.co/48x48'}
+                                    alt={session?.user?.name || 'Author'}
+                                    width={48}
+                                    height={48}
+                                    className="rounded-full size-10"
+                                />
                             </Link>
                         </>
                     ) : (

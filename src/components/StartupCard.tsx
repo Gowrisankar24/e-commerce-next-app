@@ -28,10 +28,10 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
                             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
                         </Link>
                     </div>
-                    <Link href={`/user/${postId}`}>
+                    <Link href={`/user/${author?._id}`}>
                         <Image
-                            src={'https://placehold.co/48x48'}
-                            alt="Placeholder"
+                            src={author?.image || 'https://placehold.co/48x48'}
+                            alt={author?.name || 'Author'}
                             width={48}
                             height={48}
                             className="rounded-full"
