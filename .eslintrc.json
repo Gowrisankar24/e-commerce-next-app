@@ -3,5 +3,9 @@
         "node": true,
         "es6": true
     },
-    "extends": ["next/core-web-vitals", "next/typescript", "prettier", "eslint:recommended"]
+    "extends": ["next/core-web-vitals", "next/typescript", "prettier", "eslint:recommended"],
+    "rules": {
+        "react/no-unescaped-entities": "off",
+        "@next/next/no-page-custom-font": "off"
+    }
 }

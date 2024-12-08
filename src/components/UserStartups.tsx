@@ -5,7 +5,6 @@ import StartupCard, { StartupTypeCard } from './StartupCard';
 
 const UserStartups = async ({ id }: { id: string }) => {
     const getUserStartupsList = await client.fetch(STARTUPS_BY_USER_QUERY, { id });
-    console.log('user', getUserStartupsList, id);
     return (
         <>
             {getUserStartupsList?.length > 0 ? (
