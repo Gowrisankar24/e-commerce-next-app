@@ -18,5 +18,5 @@ export const formSchemaCheck = z.object({
                 return false;
             }
         }),
-    pitch: z.string().min(5),
+    pitchValue: z.string().min(5),
 });

@@ -1,17 +1,24 @@
 'use client';
-import React, { useActionState, useState } from 'react';
+import React, { useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { Send } from 'lucide-react';
 import { formSchemaCheck } from '@/lib/validation';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { createPitch } from '@/lib/action';
+import { useToast } from '@/hooks/use-toast';
 
 const CreateForm = () => {
-    const [errors, setErrors] = useState<Record<string, string>>({});
+    const { toast } = useToast();
+    const [errors, setErrors] = useState<Record<string, string>>({
+        errors: '',
+        status: 'INITIAL',
+    });
+    const [isPending, setIspendling] = useState(false);
     const [pitchValue, setPitchValue] = useState('');
     const router = useRouter();
-    const handleFormSubmit = async (prevState: any, formData: FormData) => {
+    const handleFormSubmit = async (formData: FormData) => {
+        setIspendling(true);
         try {
             const formValues = {
                 title: formData?.get('title') as string,
@@ -21,32 +28,41 @@ const CreateForm = () => {
                 pitchValue,
             };
             await formSchemaCheck.parseAsync(formValues);
-            const result = await createPitch(prevState, formData, pitchValue);
-            if (result.status == 'SUCCESS') {
-                alert('startup created Successfully');
+            console.log('fomr', formValues);
+            const result = await createPitch(formValues);
+            console.log('result', result);
+            if (result?.status == 'SUCCESS') {
+                toast({
+                    title: 'Success',
+                    description: 'Your startup pitch has been created successfully',
+                });
                 router.push(`/startup/${result._id}`);
             }
-            return result;
+            setIspendling(false);
+            // return result;
         } catch (error) {
+            console.log('catch', error);
+            setIspendling(false);
             if (error instanceof z.ZodError) {
                 const fieldsError = error.flatten().fieldErrors;
                 setErrors(fieldsError as unknown as Record<string, string>);
-                return { ...prevState, error: 'Validation Failed', status: 'ERROR' };
+            } else {
+                console.error('Unknown error:', error);
             }
-            return {
-                ...prevState,
-                error: 'A Unknown error occurred',
-                status: 'ERROR',
-            };
         }
     };
-    const [state, formAction, isPending] = useActionState(handleFormSubmit, {
-        errors: '',
-        status: 'INITIAL',
-    });
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        handleFormSubmit(formData);
+    };
+    // const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+    //     errors: '',
+    //     status: 'INITIAL',
+    // });
     return (
         <>
-            <form action={formAction} className="startup-form">
+            <form onSubmit={onSubmit} className="startup-form">
                 <div>
                     <label htmlFor="title" className="startup-form_label">
                         Title
@@ -124,7 +140,9 @@ const CreateForm = () => {
                             disallowedElements: ['style'],
                         }}
                     />
-                    {errors?.pitch && <p className="startup-form_error">{errors?.pitch}</p>}
+                    {errors?.pitchValue && (
+                        <p className="startup-form_error">{errors?.pitchValue}</p>
+                    )}
                 </div>
 
                 <button
@@ -139,5 +157,4 @@ const CreateForm = () => {
         </>
     );
 };
-
 export default CreateForm;
