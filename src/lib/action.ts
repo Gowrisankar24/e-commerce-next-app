@@ -4,7 +4,7 @@ import { parsedResponseString } from './utils';
 import slugify from 'slugify';
 import { write_token } from '@/sanity/lib/write-token';
 
-export const createPitch = async (state: any, form: FormData, pitch: string) => {
+export const createPitch = async (formValues: Record<string, any>) => {
     const session = auth();
     if (!session) {
         return parsedResponseString({
@@ -13,9 +13,7 @@ export const createPitch = async (state: any, form: FormData, pitch: string) => 
         });
     }
 
-    const { title, description, category, link } = Object.fromEntries(
-        Array.from(form).filter(([key]) => key !== 'pitch')
-    );
+    const { title, description, category, link, pitchValue } = formValues;
 
     const slug = slugify(title as string, { lower: true, strict: true });
     try {
@@ -32,7 +30,7 @@ export const createPitch = async (state: any, form: FormData, pitch: string) => 
                 _type: 'reference',
                 _ref: session?.id,
             },
-            pitch,
+            pitch: pitchValue,
         };
 
         const result = await write_token.create({ _type: 'startup', ...startup });

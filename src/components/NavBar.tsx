@@ -9,9 +9,19 @@ const NavBar = async () => {
     return (
         <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
             <nav className="flex justify-between items-center">
-                <Link href="/">
-                    <Image src="/logo.png" alt="logo" width={70} height={40} />
-                </Link>
+                <div className="flex">
+                    <Link href="/">
+                        <Image
+                            // src="/images.jpg"
+                            src="/logo.png"
+                            alt="logo"
+                            width={40}
+                            height={40}
+                            className="rounded-lg backdrop-contrast-75 backdrop-blur-md"
+                        />
+                    </Link>
+                    <h1 className="mx-3 text-3xl font-semibold tracking-wider">Elevate Ventures</h1>
+                </div>
 
                 <div className="flex items-center gap-5 text-black">
                     {session && session?.user ? (

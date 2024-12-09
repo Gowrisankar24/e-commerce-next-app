@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { Suspense } from 'react';
 import { formatDate } from '@/lib/utils';
 import { client } from '@/sanity/lib/client';
@@ -20,10 +21,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             slug: 'editor-picks-new',
         }),
     ]);
+    console.log('param', params);
     const parsedPitchContent = md.render(get_id_data?.pitch || '');
 
     if (!get_id_data) return notFound();
-    console.log('gete', editorPosts, get_id_data?.slug?.current);
+    console.log('gete', get_id_data, editorPosts);
     return (
         <>
             <section className="pink_container !min-h-[230px]">
@@ -44,13 +46,16 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             href={`/user/${get_id_data?.author?._id}`}
                             className="flex gap-2 items-center mb-3"
                         >
-                            <Image
-                                src={get_id_data?.author?.image}
-                                alt="avatar"
-                                width={64}
-                                height={64}
-                                className="rounded-full drop-shadow-lg"
-                            />
+                            {get_id_data && (
+                                <Image
+                                    src={get_id_data?.author?.image!}
+                                    alt="avatar"
+                                    width={64}
+                                    height={64}
+                                    className="rounded-full drop-shadow-lg"
+                                />
+                            )}
+
                             <div>
                                 <p className="text-20-medium">{get_id_data?.author?.name}</p>
                                 <p className="text-16-medium !text-black-300">

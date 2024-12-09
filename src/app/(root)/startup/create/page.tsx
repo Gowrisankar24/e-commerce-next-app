@@ -2,7 +2,7 @@ import React from 'react';
 import CreateForm from '@/components/CreateForm';
 import { auth } from '../../../../../auth';
 import { redirect } from 'next/navigation';
-
+import { Toaster } from '@/components/ui/toaster';
 const page = async () => {
     const session = await auth();
     if (!session) redirect('/');
@@ -12,6 +12,7 @@ const page = async () => {
                 <h1 className="heading">Submit Your StartUp</h1>
             </section>
             <CreateForm />
+            <Toaster />
         </>
     );
 };
