@@ -5,10 +5,16 @@ import { STARTUP_VIEWS_QUERY } from '@/sanity/lib/queries';
 import { write_token } from '@/sanity/lib/write-token';
 import { unstable_after as after } from 'next/server';
 
+interface ViewsData {
+    views: number | null;
+}
+
 const View = async ({ id }: { id: string }) => {
-    const { views: totalNoViews } = await client
+    const results: ViewsData | null = await client
         .withConfig({ useCdn: false })
         .fetch(STARTUP_VIEWS_QUERY, { id });
+
+    const { views: totalNoViews } = results;
     after(async () => {
         await write_token
             .patch(id)

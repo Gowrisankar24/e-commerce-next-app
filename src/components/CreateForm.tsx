@@ -28,9 +28,7 @@ const CreateForm = () => {
                 pitchValue,
             };
             await formSchemaCheck.parseAsync(formValues);
-            console.log('fomr', formValues);
             const result = await createPitch(formValues);
-            console.log('result', result);
             if (result?.status == 'SUCCESS') {
                 toast({
                     title: 'Success',
