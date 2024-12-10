@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { formatDate } from '@/lib/utils';
 import { Author, Startup } from '@/sanity/types';
 import { EyeIcon } from 'lucide-react';
@@ -40,7 +41,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
                 </div>
                 <Link href={`/startup/${postId}`}>
                     <p className="startup-card_desc">{description}</p>
-                    <img src={image} alt="placeholder" className="startup-card_img" />
+                    <img src={image!} alt="placeholder" className="startup-card_img" />
                 </Link>
                 <div className="flex-between gap-3 mt-5">
                     <Link href={`/?query=${category?.toLowerCase()}`}>

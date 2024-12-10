@@ -19,13 +19,16 @@ export const Startups = defineType({
         defineField({
             name: 'author',
             type: 'reference',
-            to: {
-                type: 'author',
-            },
+            to: [
+                {
+                    type: 'author',
+                },
+            ],
         }),
         defineField({
             name: 'views',
             type: 'number',
+            initialValue: 0,
         }),
         defineField({
             name: 'description',

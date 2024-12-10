@@ -31,8 +31,9 @@ const NavBar = async () => {
                                 <BadgePlus className="size-6 sm:hidden" />
                             </Link>
                             <form
-                                action={async () => {
+                                onSubmit={async e => {
                                     'use server';
+                                    e.preventDefault();
                                     await signOut({ redirectTo: '/' });
                                 }}
                             >
@@ -55,8 +56,9 @@ const NavBar = async () => {
                         </>
                     ) : (
                         <form
-                            action={async () => {
+                            onSubmit={async e => {
                                 'use server';
+                                e.preventDefault();
                                 await signIn('google');
                             }}
                         >

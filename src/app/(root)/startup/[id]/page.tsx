@@ -21,11 +21,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             slug: 'editor-picks-new',
         }),
     ]);
-    console.log('param', params);
+
     const parsedPitchContent = md.render(get_id_data?.pitch || '');
 
     if (!get_id_data) return notFound();
-    console.log('gete', get_id_data, editorPosts);
+
     return (
         <>
             <section className="pink_container !min-h-[230px]">
@@ -36,8 +36,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
             <section className="section_container">
                 <img
-                    src={get_id_data?.image}
-                    alt={get_id_data?.author?.name}
+                    src={get_id_data?.image!}
+                    alt={get_id_data?.author?.name!}
                     className="w-full h-auto rounded-xl"
                 />
                 <div className="space-y-5 mt-10 max-w-4xl mx-auto">
@@ -76,7 +76,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     )}
                 </div>
                 <hr className="divider" />
-                {/* {editorPosts?.length > 0 && (
+                {editorPosts?.length > 0 && (
                     <div className="max-w-4xl mx-auto">
                         <p className="text-30-semibold">Editor Picks</p>
 
@@ -86,7 +86,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                             })}
                         </ul>
                     </div>
-                )} */}
+                )}
 
                 <Suspense fallback={<LoaderIcon className="view_skeleton" />}>
                     <View id={id} />
