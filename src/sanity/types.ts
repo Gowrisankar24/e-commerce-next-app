@@ -148,19 +148,19 @@ export type Startup = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title?: string | null;
-    slug?: Slug | null;
+    title?: string;
+    slug?: Slug;
     author?: {
         _ref: string;
         _type: 'reference';
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: 'author';
-    } | null;
-    views?: number | null;
-    description?: string | null;
-    category?: string | null;
-    image?: string | null;
-    pitch?: string | null;
+    };
+    views?: number;
+    description?: string;
+    category?: string;
+    image?: string;
+    pitch?: string;
 };
 
 export type Slug = {

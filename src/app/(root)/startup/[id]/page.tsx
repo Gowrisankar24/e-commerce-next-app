@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @next/next/no-img-element */
 import React, { Suspense } from 'react';
 import { formatDate } from '@/lib/utils';
@@ -11,6 +12,7 @@ import { LoaderIcon } from 'lucide-react';
 import View from '@/components/View';
 import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
 
+export const experimental_ppr = true;
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const md = markdownit();
     const id = (await params).id;

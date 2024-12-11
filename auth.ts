@@ -41,7 +41,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     .fetch(AUTHOR_FIND_PROVIDER_BY_ID, {
                         id: `${profile?.sub}`,
                     });
-
                 // create author type for new user
                 if (!exisitingUser) {
                     await write_token.create({

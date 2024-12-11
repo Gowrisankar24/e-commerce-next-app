@@ -12,11 +12,11 @@ const NavBar = async () => {
                 <div className="flex">
                     <Link href="/">
                         <Image
-                            // src="/images.jpg"
-                            src="/logo.png"
+                            src="/images.jpg"
+                            // src="/logo.png"
                             alt="logo"
                             width={40}
-                            height={40}
+                            height={50}
                             className="rounded-lg backdrop-contrast-75 backdrop-blur-md"
                         />
                     </Link>
