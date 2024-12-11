@@ -11,6 +11,9 @@
 }
 
 @layer utilities {
+    .logout-btn {
+        @apply p-2 rounded-md font-medium font-work-sans;
+    }
     .flex-between {
         @apply flex justify-between items-center;
     }
