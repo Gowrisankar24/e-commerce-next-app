@@ -1,8 +1,8 @@
-<h1>✌️Quick guides</h1>
+# ✌️Quick Guides
 
 Follow these steps to set up the project locally on your machine.
 
-<h3>Prerequisites</h3>
+### Prerequisites
 
 Make sure you have the following installed on your machine:
 
@@ -24,20 +24,21 @@ Make sure you have the following installed on your machine:
     </li>
 </ul>
 
-Cloning the Repository
+## Cloning the Repository
 
 ```
    https://github.com/Gowrisankar24/e-commerce-next-app.git
+   cd e-commerce-next-app
 ```
 
-Installation
+## Installation
 
 Install the project dependencies using npm:
 ```
   npm install --legacy-peer-deps
 ```
 
-Set Up Environment Variables
+## Set Up Environment Variables
 Create a new file named <code>.env.local</code> in the root of your project and add the following content:
 ```
 AUTH_SECRET=
@@ -49,3 +50,11 @@ NEXT_PUBLIC_SANITY_API_VERSION=
 SANITY_API_TOKEN=
 ```
 Replace the placeholder values with your actual Sanity credentials. You can obtain these credentials by signing up & creating a new project on the <a href='https://www.sanity.io/'>Sanity website</a>.
+
+## Running the Project
+
+```
+npm run dev
+```
+
+Open http://localhost:3000 in your browser to view the project.
