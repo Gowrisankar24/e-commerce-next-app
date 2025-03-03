@@ -34,12 +34,15 @@ Make sure you have the following installed on your machine:
 ## Installation
 
 Install the project dependencies using npm:
+
 ```
   npm install --legacy-peer-deps
 ```
 
 ## Set Up Environment Variables
+
 Create a new file named <code>.env.local</code> in the root of your project and add the following content:
+
 ```
 AUTH_SECRET=
 AUTH_GOOGLE_ID=
@@ -49,6 +52,7 @@ NEXT_PUBLIC_SANITY_DATASET=
 NEXT_PUBLIC_SANITY_API_VERSION=
 SANITY_API_TOKEN=
 ```
+
 Replace the placeholder values with your actual Sanity credentials. You can obtain these credentials by signing up & creating a new project on the <a href='https://www.sanity.io/'>Sanity website</a>.
 
 ## Running the Project
@@ -57,4 +61,4 @@ Replace the placeholder values with your actual Sanity credentials. You can obta
 npm run dev
 ```
 
-Open http://localhost:3000 in your browser to view the project.
+Open http://localhost:8081 in your browser to view the project.

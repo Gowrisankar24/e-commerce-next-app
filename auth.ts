@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client';
 import { AUTHOR_FIND_PROVIDER_BY_ID } from '@/sanity/lib/queries';
 import { write_token } from '@/sanity/lib/write-token';
 import NextAuth from 'next-auth';
-import Google from 'next-auth/providers/google';
+import GoogleProvider from 'next-auth/providers/google';
 
 interface User {
     name: string;
@@ -16,7 +16,7 @@ interface Profile {
     id: string;
 }
 interface Token {
-    id: string;
+    id: string | undefined;
     sub: string;
 }
 
@@ -27,14 +27,15 @@ interface session {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
-        Google({
+        GoogleProvider({
             clientId: process.env.AUTH_GOOGLE_ID,
-            clientSecret: process.env.AUTH_GOOGLE_SECRET,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET!,
         }),
     ],
     callbacks: {
         async signIn({ user: { name, email, image }, profile }: { user: User; profile: Profile }) {
             //find existing user
+            console.log('user', name, email, image, profile);
             try {
                 const exisitingUser = await client
                     .withConfig({ useCdn: false })

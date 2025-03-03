@@ -3,13 +3,14 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev -p 8081",
         "build": "next build",
-        "start": "GENERATE_SOURCEMAP=false && next start",
+        "start": "next start -p 8081",
         "lint": "next lint",
         "predev": "npm run typegen",
         "prebuild": "npm run typegen",
-        "typegen": "sanity schema extract --path=./src/sanity/extract.json && sanity typegen generate"
+        "typegen": "sanity schema extract --path=./src/sanity/extract.json && sanity typegen generate",
+        "format": "prettier --write ./"
     },
     "packageManager": "npm@10.8.1",
     "dependencies": {
@@ -25,7 +26,7 @@
         "easymde": "^2.18.0",
         "lucide-react": "^0.463.0",
         "markdown-it": "^14.1.0",
-        "next": "^15.0.3",
+        "next": "^15.2.0",
         "next-auth": "^5.0.0-beta.25",
         "next-sanity": "^9.8.3-canary.1",
         "react": "^19.0.0",
