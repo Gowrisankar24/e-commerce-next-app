@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ✌️Quick Guides
 
-## Getting Started
+Follow these steps to set up the project locally on your machine.
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Make sure you have the following installed on your machine:
+
+<ul>
+  <li key=1>
+    <a href='https://git-scm.com/'>
+       Git
+    </a>
+  </li>
+  <li key=2>
+    <a href='https://nodejs.org/en'>
+       Nodejs
+    </a>
+  </li>
+  <li key=3>
+    <a href='https://www.npmjs.com/'>
+       npm (Node Package Manager))
+    </a>
+    </li>
+</ul>
+
+## Cloning the Repository
+
+```
+   https://github.com/Gowrisankar24/e-commerce-next-app.git
+   cd e-commerce-next-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install the project dependencies using npm:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+  npm install --legacy-peer-deps
+```
 
-## Learn More
+## Set Up Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a new file named <code>.env.local</code> in the root of your project and add the following content:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+AUTH_SECRET=
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+NEXT_PUBLIC_SANITY_API_VERSION=
+SANITY_API_TOKEN=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Replace the placeholder values with your actual Sanity credentials. You can obtain these credentials by signing up & creating a new project on the <a href='https://www.sanity.io/'>Sanity website</a>.
 
-## Deploy on Vercel
+## Running the Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open http://localhost:8081 in your browser to view the project.
