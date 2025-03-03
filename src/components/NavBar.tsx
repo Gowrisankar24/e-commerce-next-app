@@ -6,6 +6,7 @@ import { BadgePlus, LogOut } from 'lucide-react';
 
 const NavBar = async () => {
     const session = await auth();
+    console.log('user', session);
     return (
         <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
             <nav className="flex justify-between items-center">
@@ -31,9 +32,8 @@ const NavBar = async () => {
                                 <BadgePlus className="size-6 sm:hidden" />
                             </Link>
                             <form
-                                onSubmit={async e => {
+                                onSubmit={async () => {
                                     'use server';
-                                    e.preventDefault();
                                     await signOut({ redirectTo: '/' });
                                 }}
                             >
@@ -56,9 +56,8 @@ const NavBar = async () => {
                         </>
                     ) : (
                         <form
-                            onSubmit={async e => {
+                            onSubmit={async () => {
                                 'use server';
-                                e.preventDefault();
                                 await signIn('google');
                             }}
                         >
